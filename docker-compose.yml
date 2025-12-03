@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: gdash-mongo
+    restart: always
+    ports:
+      - '${MONGO_PORT}:${MONGO_PORT}'
+    env_file:
+      - .env 
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - gdash-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: gdash-rabbitmq
+    restart: always
+    ports:
+      - '${RABBIT_PORT}:${RABBIT_PORT}' 
+      - '15672:15672'
+    env_file:
+      - .env 
+    networks:
+      - gdash-network
+
+  collector:
+    build: ./collector
+    container_name: gdash-collector
+    depends_on:
+      - rabbitmq
+    networks:
+      - gdash-network
+    environment:
+      - COLLECT_INTERVAL_SECONDS=${COLLECT_INTERVAL_SECONDS}
+  
+  worker:
+    build: ./worker
+    container_name: gdash-worker
+    depends_on:
+      - rabbitmq
+      - backend
+    env_file:
+      - .env
+    networks:
+      - gdash-network
+
+  backend:
+    build: ./backend
+    container_name: gdash-backend
+    ports:
+      - '${BACKEND_PORT}:${BACKEND_PORT}' 
+    depends_on:
+      - mongodb
+    env_file:
+      - .env 
+    networks:
+      - gdash-network
+
+networks:
+  gdash-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
