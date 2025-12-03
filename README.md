@@ -1,3 +1,78 @@
+> Solução Full-Stack para o Desafio Técnico GDASH 2025/02
+
+Este projeto é um sistema distribuído de monitoramento climático que integra coleta de dados em tempo real, processamento via filas, armazenamento e visualização com IA generativa para insights meteorológicos.
+
+---
+
+## 🚀 Como Rodar o Projeto
+
+Siga os passos abaixo para baixar, configurar e subir toda a stack utilizando Docker.
+
+### Pré-requisitos
+- [Git](https://git-scm.com/) instalado.
+- [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/) instalados.
+- Uma chave de API do **Google Gemini** (Gratuita). [Obtenha aqui](https://aistudio.google.com/).
+
+### 1. Clonar o Repositório
+Abra o terminal e execute os comandos para baixar o projeto e entrar na pasta:
+
+```bash
+# Clone este repositório
+git clone https://github.com/Wesley00s/desafio-gdash-2025-02.git
+
+# Entre na pasta do projeto
+cd desafio-gdash-2025-02
+
+# Fazer checkout para branch correta
+git checkout Wesley-Rodrigues-de-Sousa
+```
+
+### 2. Configuração de Ambiente (.env)
+O projeto possui um arquivo de exemplo na raiz. Crie o arquivo `.env` oficial copiando o exemplo:
+
+```bash
+# Copie o arquivo de exemplo para o arquivo real
+cp .env.example .env
+```
+
+Abra o arquivo `.env` recém-criado em seu editor de texto e preencha a variável da IA:
+
+```env
+# Cole sua chave aqui dentro do .env
+GEMINI_API_KEY="AIzaSy...sua_chave_aqui"
+
+# Você pode adiciocar um secret key para o JWT do backend
+SECRET_KEY="sua_secret_aqui"
+```
+
+### 3. Inicialização (Docker)
+Com as variáveis configuradas, suba todos os serviços com um único comando:
+
+```bash
+docker-compose up -d --build
+```
+
+*Aguarde alguns instantes. O Docker irá baixar as imagens, instalar dependências e iniciar o Banco de Dados, RabbitMQ, Backend e Frontend.*
+
+### 4. Acessando a Aplicação
+
+| Serviço | URL | Credenciais Padrão |
+| :--- | :--- | :--- |
+| **Frontend (Dashboard)** | [http://localhost:5173](http://localhost:5173) | Crie uma conta em "Registre-se" |
+| **Backend (API)** | [http://localhost:3000](http://localhost:3000) | - |
+| **RabbitMQ (Painel)** | [http://localhost:15672](http://localhost:15672) | `user` / `password123` |
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Frontend:** React, Vite, Tailwind CSS, Shadcn/ui, Recharts.
+- **Backend:** NestJS, TypeScript, Mongoose (MongoDB).
+- **Worker:** Go (Golang) para alto desempenho no consumo de filas.
+- **Coleta:** Python para extração de dados do Open-Meteo.
+- **Infraestrutura:** Docker, Docker Compose, RabbitMQ.
+- **Inteligência Artificial:** Google Gemini AI (via SDK `@google/genai`).
+
 # Desafio para o processo seletivo GDASH 2025/02
 
 Repositório destinado aos interessados em participar do processo seletivo GDASH 2025/02.
