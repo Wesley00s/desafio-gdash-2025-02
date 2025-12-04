@@ -32,7 +32,6 @@ export function TemperatureChart({ data }: Props) {
                      data={data}
                      margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                   >
-                     {/* Gradiente de cor para a área */}
                      <defs>
                         <linearGradient
                            id="colorTemp"
@@ -59,7 +58,7 @@ export function TemperatureChart({ data }: Props) {
                         stroke="#e5e7eb"
                      />
                      <XAxis
-                        dataKey="timestamp"
+                        dataKey="createdAt"
                         tickFormatter={formatTime}
                         stroke="#9ca3af"
                         fontSize={12}

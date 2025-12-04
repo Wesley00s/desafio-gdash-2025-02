@@ -70,7 +70,7 @@ export function MetricsChart({
                         stroke="#e5e7eb"
                      />
                      <XAxis
-                        dataKey="timestamp"
+                        dataKey="createdAt"
                         tickFormatter={formatTime}
                         stroke="#9ca3af"
                         fontSize={12}
