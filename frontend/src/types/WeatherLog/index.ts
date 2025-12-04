@@ -4,4 +4,5 @@ export interface WeatherLog {
    humidity: number;
    wind_speed: number;
    timestamp: string;
+   createdAt: string;
 }
