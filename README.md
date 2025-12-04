@@ -49,7 +49,7 @@ SECRET_KEY="sua_secret_aqui"
 Com as variáveis configuradas, suba todos os serviços com um único comando:
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 *Aguarde alguns instantes. O Docker irá baixar as imagens, instalar dependências e iniciar o Banco de Dados, RabbitMQ, Backend e Frontend.*
