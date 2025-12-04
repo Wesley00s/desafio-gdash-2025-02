@@ -17,6 +17,7 @@ export function DashboardPage() {
       meta,
       setPage,
       setDateFilter,
+      refresh
    } = useWeather();
 
    const handleLogout = () => {
@@ -47,6 +48,7 @@ export function DashboardPage() {
             meta={meta}
             onPageChange={setPage}
             onFilterChange={setDateFilter}
+            onRefresh={refresh}
             loading={loading}
          />
       </div>
