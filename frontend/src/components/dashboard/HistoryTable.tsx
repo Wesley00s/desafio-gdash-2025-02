@@ -22,11 +22,11 @@ import {
    X,
    CalendarClock,
    RefreshCw,
-   Info
+   Info,
+   MapPin
 } from 'lucide-react';
 import {formatDate} from '@/util/formatDate';
 import type {PaginationMeta} from "@/types/PaginationMeta";
-
 
 interface Props {
    logs: WeatherLog[];
@@ -42,7 +42,8 @@ export function HistoryTable({
   meta,
   onPageChange,
   onFilterChange,
-  onRefresh, loading = false,
+  onRefresh,
+  loading = false,
 }: Props) {
    const [dateStart, setDateStart] = useState('');
    const [dateEnd, setDateEnd] = useState('');
@@ -186,6 +187,7 @@ export function HistoryTable({
                            <TableHeader className="bg-slate-50">
                               <TableRow>
                                  <TableHead>Data/Hora</TableHead>
+                                 <TableHead>Localização</TableHead>
                                  <TableHead>Temperatura</TableHead>
                                  <TableHead>Umidade</TableHead>
                                  <TableHead>Vento</TableHead>
@@ -197,6 +199,17 @@ export function HistoryTable({
                                     <TableCell className="font-medium text-slate-700">
                                        {formatDate(log.createdAt)}
                                     </TableCell>
+
+                                    <TableCell>
+                                       <div className="flex items-center gap-1.5 text-slate-500 text-xs">
+                                          <MapPin className="h-3.5 w-3.5 text-slate-400"/>
+                                          <div className="flex flex-col">
+                                             <span>Lat: -5.11</span>
+                                             <span>Lon: 39.79</span>
+                                          </div>
+                                       </div>
+                                    </TableCell>
+
                                     <TableCell>
                                        <span
                                           className="inline-flex items-center gap-1 font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded text-xs">
@@ -230,13 +243,21 @@ export function HistoryTable({
                               key={log._id}
                               className="bg-white border rounded-lg p-4 shadow-sm flex flex-col gap-3"
                            >
-                              <div className="flex justify-between items-center border-b pb-2">
-                                 <span className="text-sm font-semibold text-slate-700">
-                                    {formatDate(log.createdAt).split(',')[0]}
-                                 </span>
-                                 <span className="text-xs text-slate-500">
-                                    {formatDate(log.createdAt).split(',')[1]}
-                                 </span>
+                              <div className="flex justify-between items-start border-b pb-2">
+                                 <div className="flex flex-col">
+                                    <span className="text-sm font-semibold text-slate-700">
+                                       {formatDate(log.createdAt).split(',')[0]}
+                                    </span>
+                                    <span className="text-xs text-slate-500">
+                                       {formatDate(log.createdAt).split(',')[1]}
+                                    </span>
+                                 </div>
+
+                                 <div
+                                    className="flex items-center gap-1 text-[10px] text-slate-400 bg-slate-50 px-2 py-1 rounded-full">
+                                    <MapPin className="h-3 w-3"/>
+                                    -5.110373277398005, -39.7905236187523
+                                 </div>
                               </div>
 
                               <div className="grid grid-cols-3 gap-2 text-center">
@@ -246,9 +267,7 @@ export function HistoryTable({
                                     <span className="font-bold text-slate-700">
                                        {log.temperature}°
                                     </span>
-                                    <span className="text-[10px] text-slate-500 uppercase">
-                                       Temp
-                                    </span>
+                                    <span className="text-[10px] text-slate-500 uppercase">Temp</span>
                                  </div>
                                  <div
                                     className="flex flex-col items-center justify-center p-2 bg-blue-50 rounded-md border border-blue-100">
@@ -256,9 +275,7 @@ export function HistoryTable({
                                     <span className="font-bold text-slate-700">
                                        {log.humidity}%
                                     </span>
-                                    <span className="text-[10px] text-slate-500 uppercase">
-                                       Umid
-                                    </span>
+                                    <span className="text-[10px] text-slate-500 uppercase">Umid</span>
                                  </div>
                                  <div
                                     className="flex flex-col items-center justify-center p-2 bg-green-50 rounded-md border border-green-100">
@@ -266,9 +283,7 @@ export function HistoryTable({
                                     <span className="font-bold text-slate-700">
                                        {log.wind_speed}
                                     </span>
-                                    <span className="text-[10px] text-slate-500 uppercase">
-                                       Vento
-                                    </span>
+                                    <span className="text-[10px] text-slate-500 uppercase">Vento</span>
                                  </div>
                               </div>
                            </div>
