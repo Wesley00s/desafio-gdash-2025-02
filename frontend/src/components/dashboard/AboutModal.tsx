@@ -5,17 +5,25 @@ import {
    DialogHeader,
    DialogTitle,
    DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
    Tooltip,
    TooltipContent,
    TooltipProvider,
    TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
-import { HelpCircle, Activity, Brain, FileText, BarChart3, ShieldCheck } from "lucide-react";
+} from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
+import {
+   HelpCircle,
+   Activity,
+   Brain,
+   FileText,
+   BarChart3,
+   ShieldCheck,
+   Rocket,
+} from 'lucide-react';
+import * as React from 'react';
 
-// Ícone do Github (SVG manual para evitar warning de deprecated)
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
    return (
       <svg
@@ -43,7 +51,11 @@ export function AboutModal() {
             <Tooltip>
                <TooltipTrigger asChild>
                   <DialogTrigger asChild>
-                     <Button variant="ghost" size="icon" className="text-slate-500 hover:text-blue-600">
+                     <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-slate-500 hover:text-blue-600"
+                     >
                         <HelpCircle className="h-5 w-5" />
                      </Button>
                   </DialogTrigger>
@@ -65,82 +77,111 @@ export function AboutModal() {
             </DialogHeader>
 
             <div className="grid gap-6 py-4">
-
-               {/* Introdução do Produto */}
                <div className="space-y-2">
                   <p className="text-sm text-slate-600 leading-relaxed">
-                     O <strong>GDASH Weather</strong> é uma solução completa para acompanhamento de condições meteorológicas em tempo real. Projetado para oferecer precisão e agilidade, o sistema integra coleta de dados de alta disponibilidade com inteligência artificial para gerar insights acionáveis.
+                     O <strong>GDASH Weather</strong> é uma solução completa
+                     para acompanhamento de condições meteorológicas em tempo
+                     real. Projetado para oferecer precisão e agilidade, o
+                     sistema integra coleta de dados de alta disponibilidade com
+                     inteligência artificial para gerar insights acionáveis.
                   </p>
                </div>
 
-               {/* Lista de Funcionalidades (Grid 2 colunas) */}
                <div className="space-y-3">
                   <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-wider">
                      Principais Recursos
                   </h4>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                     {/* Feature 1 */}
                      <div className="flex gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100 hover:border-blue-200 transition-colors">
                         <div className="mt-1">
                            <Activity className="h-5 w-5 text-blue-500" />
                         </div>
                         <div>
-                           <h5 className="font-medium text-sm text-slate-800">Tempo Real</h5>
-                           <p className="text-xs text-slate-500 mt-1">Monitoramento contínuo de temperatura, umidade e ventos com atualização automática.</p>
+                           <h5 className="font-medium text-sm text-slate-800">
+                              Tempo Real
+                           </h5>
+                           <p className="text-xs text-slate-500 mt-1">
+                              Monitoramento contínuo de temperatura, umidade e
+                              ventos com atualização automática.
+                           </p>
                         </div>
                      </div>
 
-                     {/* Feature 2 */}
                      <div className="flex gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100 hover:border-purple-200 transition-colors">
                         <div className="mt-1">
                            <Brain className="h-5 w-5 text-purple-500" />
                         </div>
                         <div>
-                           <h5 className="font-medium text-sm text-slate-800">IA Generativa</h5>
-                           <p className="text-xs text-slate-500 mt-1">Análises automáticas de tendências e recomendações de saúde baseadas no Gemini AI.</p>
+                           <h5 className="font-medium text-sm text-slate-800">
+                              IA Generativa
+                           </h5>
+                           <p className="text-xs text-slate-500 mt-1">
+                              Análises automáticas de tendências e recomendações
+                              de saúde baseadas no Gemini AI.
+                           </p>
                         </div>
                      </div>
 
-                     {/* Feature 3 */}
                      <div className="flex gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100 hover:border-green-200 transition-colors">
                         <div className="mt-1">
                            <FileText className="h-5 w-5 text-green-500" />
                         </div>
                         <div>
-                           <h5 className="font-medium text-sm text-slate-800">Relatórios</h5>
-                           <p className="text-xs text-slate-500 mt-1">Exportação completa de histórico em formatos CSV e Excel para auditoria e análise externa.</p>
+                           <h5 className="font-medium text-sm text-slate-800">
+                              Relatórios
+                           </h5>
+                           <p className="text-xs text-slate-500 mt-1">
+                              Exportação completa de histórico em formatos CSV e
+                              Excel para auditoria e análise externa.
+                           </p>
                         </div>
                      </div>
 
-                     {/* Feature 4 */}
                      <div className="flex gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100 hover:border-orange-200 transition-colors">
                         <div className="mt-1">
                            <BarChart3 className="h-5 w-5 text-orange-500" />
                         </div>
                         <div>
-                           <h5 className="font-medium text-sm text-slate-800">Visualização de Dados</h5>
-                           <p className="text-xs text-slate-500 mt-1">Gráficos interativos para análise histórica de variações climáticas.</p>
+                           <h5 className="font-medium text-sm text-slate-800">
+                              Visualização de Dados
+                           </h5>
+                           <p className="text-xs text-slate-500 mt-1">
+                              Gráficos interativos para análise histórica de
+                              variações climáticas.
+                           </p>
                         </div>
                      </div>
 
+                     <div className="flex gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100 hover:border-indigo-200 transition-colors sm:col-span-2">
+                        <div className="mt-1">
+                           <Rocket className="h-5 w-5 text-indigo-500" />
+                        </div>
+                        <div>
+                           <h5 className="font-medium text-sm text-slate-800">
+                              Monitoramento Espacial
+                           </h5>
+                           <p className="text-xs text-slate-500 mt-1">
+                              Integração BFF com a API da NASA (NeoWs) para
+                              rastrear asteroides próximos à Terra em tempo
+                              real.
+                           </p>
+                        </div>
+                     </div>
                   </div>
                </div>
 
-               {/* Rodapé Seguro */}
                <div className="bg-blue-50/50 p-3 rounded-md flex items-center gap-3 border border-blue-100">
                   <ShieldCheck className="h-5 w-5 text-blue-600 shrink-0" />
                   <p className="text-xs text-blue-800">
-                     Seus dados são processados de forma segura. O sistema utiliza criptografia de ponta a ponta e autenticação JWT robusta.
+                     Seus dados são processados de forma segura. O sistema
+                     utiliza criptografia de ponta a ponta e autenticação JWT
+                     robusta.
                   </p>
                </div>
 
-               {/* Rodapé / Autor */}
                <div className="flex items-center justify-between border-t pt-4 mt-2">
-                  <div className="text-xs text-slate-400">
-                     Versão 1.0.0
-                  </div>
+                  <div className="text-xs text-slate-400">Versão 1.0.0</div>
                   <a
                      href="https://github.com/Wesley00"
                      target="_blank"
@@ -151,7 +192,6 @@ export function AboutModal() {
                      Desenvolvido por Wesley00s
                   </a>
                </div>
-
             </div>
          </DialogContent>
       </Dialog>
