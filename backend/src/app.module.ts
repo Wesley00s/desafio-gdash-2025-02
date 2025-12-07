@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { NasaModule } from './nasa/nasa.module';
 
 @Module({
    imports: [
@@ -14,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
       WeatherModule,
       UsersModule,
       AuthModule,
+      NasaModule,
    ],
    controllers: [],
    providers: [],
