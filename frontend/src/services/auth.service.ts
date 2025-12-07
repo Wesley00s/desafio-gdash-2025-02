@@ -48,10 +48,10 @@ export const AuthService = {
 
       try {
          await axios.get(`${API_URL}/auth/me`, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` },
          });
          return true;
-      } catch (error) {
+      } catch {
          return false;
       }
    },
