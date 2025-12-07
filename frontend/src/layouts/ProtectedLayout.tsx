@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
-import {Navigate, Outlet} from "react-router-dom";
-import {Loader2} from "lucide-react";
-import {AuthService} from "@/services/auth.service.ts";
+import { useEffect, useState } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
+import { AuthService } from '@/services/auth.service.ts';
 
 export function ProtectedLayout() {
    const [isVerifying, setIsVerifying] = useState(true);
@@ -28,19 +28,19 @@ export function ProtectedLayout() {
    if (isVerifying) {
       return (
          <div className="h-screen w-screen flex items-center justify-center bg-slate-50">
-            <Loader2 className="h-10 w-10 animate-spin text-blue-500"/>
+            <Loader2 className="h-10 w-10 animate-spin text-blue-500" />
          </div>
       );
    }
 
    if (!isAuthenticated) {
-      return <Navigate to="/login" replace/>;
+      return <Navigate to="/login" replace />;
    }
 
    return (
       <div className="min-h-screen bg-slate-50 p-8">
          <div className="max-w-6xl mx-auto">
-            <Outlet/>
+            <Outlet />
          </div>
       </div>
    );
