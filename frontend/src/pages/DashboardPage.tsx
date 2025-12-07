@@ -17,7 +17,7 @@ export function DashboardPage() {
       meta,
       setPage,
       setDateFilter,
-      refresh
+      refresh,
    } = useWeather();
 
    const handleLogout = () => {
