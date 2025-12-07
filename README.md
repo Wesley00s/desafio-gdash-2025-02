@@ -125,6 +125,8 @@ Página dedicada com gráficos de área para Temperatura, Umidade e Velocidade d
 - Documentação Swagger com suporte a Bearer Token.
 - Rotas protegidas.
 
+### 7. Video explicativo: https://youtu.be/A3fJLunOByM
+
 # Desafio para o processo seletivo GDASH 2025/02
 
 Repositório destinado aos interessados em participar do processo seletivo GDASH 2025/02.
