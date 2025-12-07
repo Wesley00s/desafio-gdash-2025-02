@@ -3,8 +3,9 @@ import { ProtectedLayout } from '@/layouts/ProtectedLayout';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { RegisterPage } from '@/pages/RegisterPage';
-import { ProfilePage } from '@/pages/ProfilePage.tsx';
-import { AnalyticsPage } from '@/pages/AnalyticsPage.tsx';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { AnalyticsPage } from '@/pages/AnalyticsPage';
+import { AsteroidsPage } from '@/pages/AsteroidsPage';
 
 export const router = createBrowserRouter([
    {
@@ -24,15 +25,19 @@ export const router = createBrowserRouter([
             index: true,
             element: <DashboardPage />,
          },
+         {
+            path: 'analytics',
+            element: <AnalyticsPage />,
+         },
+         {
+            path: 'discover',
+            element: <AsteroidsPage />,
+         },
+         {
+            path: 'profile',
+            element: <ProfilePage />,
+         },
       ],
-   },
-   {
-      path: 'profile',
-      element: <ProfilePage />,
-   },
-   {
-      path: 'analytics',
-      element: <AnalyticsPage />,
    },
    {
       path: '*',
