@@ -1,6 +1,8 @@
+# 🌦️ GDASH Weather Monitor
+
 > Solução Full-Stack para o Desafio Técnico GDASH 2025/02
 
-Este projeto é um sistema distribuído de monitoramento climático que integra coleta de dados em tempo real, processamento via filas, armazenamento e visualização com IA generativa para insights meteorológicos.
+Este projeto é um sistema distribuído de monitoramento que integra coleta de dados climáticos em tempo real, processamento via filas, insights meteorológicos com IA generativa e **monitoramento de asteroides próximos à Terra (NASA)**.
 
 ---
 
@@ -12,13 +14,14 @@ Siga os passos abaixo para baixar, configurar e subir toda a stack utilizando Do
 - [Git](https://git-scm.com/) instalado.
 - [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/) instalados.
 - Uma chave de API do **Google Gemini** (Gratuita). [Obtenha aqui](https://aistudio.google.com/).
+- *(Opcional)* Uma chave de API da **NASA**. [Obtenha aqui](https://api.nasa.gov/).
 
 ### 1. Clonar o Repositório
 Abra o terminal e execute os comandos para baixar o projeto e entrar na pasta:
 
 ```bash
 # Clone este repositório
-git clone https://github.com/Wesley00s/desafio-gdash-2025-02.git
+git clone [https://github.com/Wesley00s/desafio-gdash-2025-02.git](https://github.com/Wesley00s/desafio-gdash-2025-02.git)
 
 # Entre na pasta do projeto
 cd desafio-gdash-2025-02
@@ -35,14 +38,18 @@ O projeto possui um arquivo de exemplo na raiz. Crie o arquivo `.env` oficial co
 cp .env.example .env
 ```
 
-Abra o arquivo `.env` recém-criado em seu editor de texto e preencha a variável da IA:
+Abra o arquivo `.env` recém-criado em seu editor de texto e preencha as variáveis:
 
 ```env
-# Cole sua chave aqui dentro do .env
+# Cole sua chave do Google Gemini (IA)
 GEMINI_API_KEY="AIzaSy...sua_chave_aqui"
 
-# Você pode adiciocar um secret key para o JWT do backend
-SECRET_KEY="sua_secret_aqui"
+# (Opcional) Chave da NASA para o monitoramento espacial
+# Se deixar em branco, o sistema usará 'DEMO_KEY' (limite reduzido)
+NASA_API_KEY="sua_chave_nasa_aqui"
+
+# Defina uma chave secreta para a segurança do JWT
+SECRET_KEY="sua_secret_segura_aqui"
 ```
 
 ### 3. Inicialização (Docker)
@@ -61,17 +68,62 @@ docker compose up -d --build
 | **Frontend (Dashboard)** | [http://localhost:5173](http://localhost:5173) | Crie uma conta em "Registre-se" |
 | **Backend (API)** | [http://localhost:3000](http://localhost:3000) | - |
 | **RabbitMQ (Painel)** | [http://localhost:15672](http://localhost:15672) | `user` / `password123` |
+| **Documentação API** | [http://localhost:3000/docs](http://localhost:3000/docs) | Swagger UI |
+
+---
+
+## 📚 Documentação da API (Swagger)
+
+O backend possui documentação interativa gerada automaticamente (OpenAPI/Swagger).
+
+1. Acesse: **[http://localhost:3000/docs](http://localhost:3000/docs)**
+2. Para testar rotas protegidas (ex: NASA, Perfil):
+    - Vá na rota `POST /auth/login`, clique em **Try it out** e execute.
+    - Copie o `access_token` da resposta.
+    - Clique no botão **Authorize** (cadeado 🔓) no topo da página.
+    - Cole o token e salve.
+    - Agora você pode testar todas as rotas protegidas.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Frontend:** React, Vite, Tailwind CSS, Shadcn/ui, Recharts.
-- **Backend:** NestJS, TypeScript, Mongoose (MongoDB).
+- **Backend:** NestJS, TypeScript, Mongoose (MongoDB), Swagger.
 - **Worker:** Go (Golang) para alto desempenho no consumo de filas.
 - **Coleta:** Python para extração de dados do Open-Meteo.
 - **Infraestrutura:** Docker, Docker Compose, RabbitMQ.
 - **Inteligência Artificial:** Google Gemini AI (via SDK `@google/genai`).
+- **Integrações Externas:**
+    - **Open-Meteo:** Dados climáticos em tempo real.
+    - **NASA NeoWs:** Monitoramento de asteroides (Feature Bônus).
+
+---
+
+## 📸 Funcionalidades
+
+### 1. Dashboard Interativo
+Visualização dos dados climáticos mais recentes com atualização em tempo real. A interface é responsiva e adapta a tabela de dados para cards em dispositivos móveis.
+
+### 2. Insights de IA Generativa
+O sistema utiliza o modelo **Gemini** do Google para analisar o histórico recente de clima e gerar:
+- **Insights de Saúde:** Recomendações práticas (ex: "Beba água, umidade baixa").
+- **Resumo Natural:** Descrição fluida do clima atual.
+
+### 3. Monitoramento Espacial (Bônus NASA)
+Integração via BFF (Backend For Frontend) com a API da NASA para monitorar asteroides próximos à Terra, com paginação real e indicadores de perigo.
+
+### 4. Gráficos e Analytics
+Página dedicada com gráficos de área para Temperatura, Umidade e Velocidade do Vento, permitindo análise visual de tendências.
+
+### 5. Filtros e Exportação
+- Filtragem avançada por range de **Data e Hora**.
+- Exportação dos dados filtrados para **Excel (.xlsx)** e **CSV**.
+
+### 6. Segurança e Gestão de Usuários
+- Autenticação JWT completa.
+- Documentação Swagger com suporte a Bearer Token.
+- Rotas protegidas.
 
 # Desafio para o processo seletivo GDASH 2025/02
 
